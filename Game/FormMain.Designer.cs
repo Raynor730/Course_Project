@@ -34,12 +34,12 @@
             labelOutMatchingLetters = new Label();
             labelMatchingLetters = new Label();
             panelNoMatchingLetters = new Panel();
+            labelOutNoMatchingLetters = new Label();
             label2 = new Label();
             panel1 = new Panel();
             InputWord = new TextBox();
             buttonCheck = new Button();
             SecretWord = new TextBox();
-            labelOutNoMatchingLetters = new Label();
             panelPicture.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picture).BeginInit();
             panelMatchingLetters.SuspendLayout();
@@ -116,6 +116,15 @@
             panelNoMatchingLetters.Size = new Size(300, 196);
             panelNoMatchingLetters.TabIndex = 3;
             // 
+            // labelOutNoMatchingLetters
+            // 
+            labelOutNoMatchingLetters.AutoSize = true;
+            labelOutNoMatchingLetters.Dock = DockStyle.Fill;
+            labelOutNoMatchingLetters.Location = new Point(20, 60);
+            labelOutNoMatchingLetters.Name = "labelOutNoMatchingLetters";
+            labelOutNoMatchingLetters.Size = new Size(0, 21);
+            labelOutNoMatchingLetters.TabIndex = 1;
+            // 
             // label2
             // 
             label2.Dock = DockStyle.Top;
@@ -176,15 +185,6 @@
             SecretWord.TabIndex = 0;
             SecretWord.Text = "_ _ _ _ _ _ _";
             SecretWord.TextAlign = HorizontalAlignment.Center;
-            // 
-            // labelOutNoMatchingLetters
-            // 
-            labelOutNoMatchingLetters.AutoSize = true;
-            labelOutNoMatchingLetters.Dock = DockStyle.Fill;
-            labelOutNoMatchingLetters.Location = new Point(20, 60);
-            labelOutNoMatchingLetters.Name = "labelOutNoMatchingLetters";
-            labelOutNoMatchingLetters.Size = new Size(0, 21);
-            labelOutNoMatchingLetters.TabIndex = 1;
             // 
             // FormMain
             // 

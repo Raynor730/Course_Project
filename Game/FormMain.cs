@@ -1,3 +1,4 @@
+using System;
 using System.Windows.Forms;
 
 namespace Game
@@ -5,26 +6,24 @@ namespace Game
     public partial class FormMain : Form
     {
         private int error = 0;
-        private int toNewLineMatchingLetters = 0;
-        private int toNewLineNoMatchingLetters = 0;
+        private HashSet<char> matchedLettersSet = new HashSet<char>();
+        private HashSet<char> noMatchedLettersSet = new HashSet<char>();
 
         public FormMain()
         {
             InitializeComponent();
         }
 
-        private void ButtonCheck_Click(object sender, EventArgs e)//закончено
+        private void ButtonCheck_Click(object sender, EventArgs e)
         {
             Check(InputWord.Text);
         }
 
-        private void FormMain_Load(object sender, EventArgs e)//закончено
+        private void FormMain_Load(object sender, EventArgs e)
         {
-            picture.Image = Image.FromFile("image\\0.png");
+            picture.Image = Image.FromFile("Image\\0.png");
 
             Random rnd = new Random();
-            FormMain form = new FormMain();
-            
             string[] words =
             {
                "Пицца",
@@ -60,78 +59,94 @@ namespace Game
                "Банка",
                "Банан"
             };
-            string secretWord = words[rnd.Next(words.Length)]; // выбираем слово которое будем угадывать
+            string secretWord = words[rnd.Next(words.Length)]; // выбираем слово, которое будем угадывать
 
             SecretWord.Text = secretWord;
         }
-        
-        public void Print(string secretWord)//закончено
-        {
-            SecretWord.Text = secretWord;
-        }
 
-        public void Check(string word)//Доделать
+        public void Check(string word)
         {
-            //Program program = new Program();
+            matchedLettersSet.Clear(); // Очищаем множества перед новой проверкой
+            noMatchedLettersSet.Clear();
 
             char[] secretWordChar = SecretWord.Text.ToLower().Trim().ToCharArray();
-            char[] inputWordChar = InputWord.Text.ToLower().Trim().ToCharArray();
-            int matching = 0;
-            
+            char[] inputWordChar = word.ToLower().Trim().ToCharArray();
 
-
-            // 
-            for (int i = 0; i < secretWordChar.Length;i++)
+            // Внешний цикл проходит по каждому символу inputWordChar
+            for (int j = 0; j < inputWordChar.Length; j++)
             {
-                for(int j = 0; j< inputWordChar.Length;j++)
+                bool matchFound = false; // Флаг для отслеживания совпадений
+
+                for (int i = 0; i < secretWordChar.Length; i++)
                 {
                     if (inputWordChar[j] == secretWordChar[i])
                     {
-                        OutMatchingLetters(inputWordChar, j);
-                        matching++;
+                        // Если совпадение найдено и буква еще не добавлена
+                        if (matchedLettersSet.Add(inputWordChar[j])) // Добавляем и проверяем уникальность
+                        {
+                            matchFound = true; // Устанавливаем флаг, если совпадение найдено
+                        }
                     }
-                    else
-                    {
-                        OutNoMatchingLetters(inputWordChar, j);
-                    }
-                    
-                    
                 }
-                
+
+                // Если совпадений не найдено, добавляем буквы во множество несовпадений
+                if (!matchFound)
+                {
+                    noMatchedLettersSet.Add(inputWordChar[j]); // Добавляем букву из вводимого слова
+                }
             }
-            if(matching == 0)
+
+            // Обновление меток с использованием методов OutMatchingLetters и OutNoMatchingLetters
+            OutMatchingLetters(matchedLettersSet);
+            OutNoMatchingLetters(noMatchedLettersSet);
+        }
+
+        public void OutMatchingLetters(HashSet<char> matchedLettersSet)
+        {
+            // Очистка текстового поля перед обновлением
+            labelOutMatchingLetters.Text = string.Empty;
+
+            // Выводим буквы в текстовое поле для совпадающих букв
+            foreach (char letter in matchedLettersSet)
             {
-                error++;
-                imgUpdate(error);
+                labelOutMatchingLetters.Text += letter + ", ";
+            }
+
+            // Убираем последний символ ", " если есть буквы
+            if (matchedLettersSet.Count > 0)
+            {
+                labelOutMatchingLetters.Text = labelOutMatchingLetters.Text.TrimEnd(',', ' ');
             }
         }
 
-        public void OutMatchingLetters(char[] inputWordChar, int index)
+        public void OutNoMatchingLetters(HashSet<char> noMatchedLettersSet)
         {
-            labelOutMatchingLetters.Text += inputWordChar[index] + ", ";
-            toNewLineMatchingLetters++;
-            if (toNewLineMatchingLetters >= 16)
+            // Очистка текстового поля перед обновлением
+            labelOutNoMatchingLetters.Text = string.Empty;
+
+            // Выводим буквы в текстовое поле для несовпадающих букв
+            foreach (char letter in noMatchedLettersSet)
             {
-                labelOutMatchingLetters.Text += "\n";
-                toNewLineMatchingLetters = 0;
+                labelOutNoMatchingLetters.Text += letter + ", ";
+            }
+
+            // Убираем последний символ ", " если есть буквы
+            if (noMatchedLettersSet.Count > 0)
+            {
+                labelOutNoMatchingLetters.Text = labelOutNoMatchingLetters.Text.TrimEnd(',', ' ');
             }
         }
 
-        public void OutNoMatchingLetters(char[] inputWordChar, int index)
+        public void imgUpdate(int error) // обновление картинки
         {
-            labelOutNoMatchingLetters.Text += inputWordChar[index] + ", ";
-            toNewLineNoMatchingLetters++;
-            if (toNewLineNoMatchingLetters >= 16)
+            if (error >= 11)
             {
-                labelOutNoMatchingLetters.Text += "\n";
-                toNewLineNoMatchingLetters = 0;
+                // форма поражения
+            }
+            else
+            {
+                picture.Image = Image.FromFile("image\\" + error + ".png");
             }
         }
-        public void imgUpdate(int error)//закончено
-        {
-            picture.Image = Image.FromFile("image\\" + error + ".png");
-        }
-
-        
     }
 }
