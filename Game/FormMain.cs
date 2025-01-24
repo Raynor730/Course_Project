@@ -6,8 +6,10 @@ namespace Game
     public partial class FormMain : Form
     {
         private int error = 0;
+        private bool errorInAttempt = false;
         private HashSet<char> matchedLettersSet = new HashSet<char>();
         private HashSet<char> noMatchedLettersSet = new HashSet<char>();
+        FormDefeat formDefeat = new FormDefeat();
 
         public FormMain()
         {
@@ -66,9 +68,6 @@ namespace Game
 
         public void Check(string word)
         {
-            matchedLettersSet.Clear(); // Очищаем множества перед новой проверкой
-            noMatchedLettersSet.Clear();
-
             char[] secretWordChar = SecretWord.Text.ToLower().Trim().ToCharArray();
             char[] inputWordChar = word.ToLower().Trim().ToCharArray();
 
@@ -92,9 +91,40 @@ namespace Game
                 // Если совпадений не найдено, добавляем буквы во множество несовпадений
                 if (!matchFound)
                 {
-                    noMatchedLettersSet.Add(inputWordChar[j]); // Добавляем букву из вводимого слова
+                    errorInAttempt = true;
+                    //Если буква есть в совпавших добавление не произойдет
+                    if(!matchedLettersSet.Contains(inputWordChar[j]))
+                    {
+                        noMatchedLettersSet.Add(inputWordChar[j]); // Добавляем букву из вводимого слова
+                    }
                 }
             }
+            if(errorInAttempt)
+            {
+                error++;
+                imgUpdate(error);
+                errorInAttempt = false;
+            }
+
+            // Если длины разные, слова не идентичны
+            if (inputWordChar.Length == secretWordChar.Length)
+            {
+                int lenght = 0;
+                // Сравниваем символы по позициям
+                for (int i = 0; i < inputWordChar.Length; i++)
+                {
+                    if (inputWordChar[i] == secretWordChar[i])
+                    {
+                        lenght++;
+                        if (lenght == secretWordChar.Length)
+                        {
+                            FormWin formWin = new FormWin();
+                            formWin.Show();
+                        }
+                    }
+                }
+            }
+
 
             // Обновление меток с использованием методов OutMatchingLetters и OutNoMatchingLetters
             OutMatchingLetters(matchedLettersSet);
@@ -141,7 +171,11 @@ namespace Game
         {
             if (error >= 11)
             {
-                // форма поражения
+                picture.Image = Image.FromFile("image\\11.png");
+                Refresh();
+                Thread.Sleep(500);
+                formDefeat.Show();
+                
             }
             else
             {
