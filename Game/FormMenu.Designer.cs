@@ -35,10 +35,11 @@
             // 
             // buttonRule
             // 
-            buttonRule.Location = new Point(322, 420);
+            buttonRule.Dock = DockStyle.Right;
+            buttonRule.Location = new Point(194, 0);
             buttonRule.Margin = new Padding(4);
             buttonRule.Name = "buttonRule";
-            buttonRule.Size = new Size(97, 32);
+            buttonRule.Size = new Size(97, 105);
             buttonRule.TabIndex = 0;
             buttonRule.Text = "Rule";
             buttonRule.UseVisualStyleBackColor = true;
@@ -46,10 +47,11 @@
             // 
             // buttonPlay
             // 
-            buttonPlay.Location = new Point(217, 420);
+            buttonPlay.Dock = DockStyle.Right;
+            buttonPlay.Location = new Point(97, 0);
             buttonPlay.Margin = new Padding(4);
             buttonPlay.Name = "buttonPlay";
-            buttonPlay.Size = new Size(97, 32);
+            buttonPlay.Size = new Size(97, 105);
             buttonPlay.TabIndex = 1;
             buttonPlay.Text = "Play";
             buttonPlay.UseVisualStyleBackColor = true;
@@ -57,10 +59,11 @@
             // 
             // buttonExit
             // 
-            buttonExit.Location = new Point(112, 420);
+            buttonExit.Dock = DockStyle.Right;
+            buttonExit.Location = new Point(0, 0);
             buttonExit.Margin = new Padding(4);
             buttonExit.Name = "buttonExit";
-            buttonExit.Size = new Size(97, 32);
+            buttonExit.Size = new Size(97, 105);
             buttonExit.TabIndex = 2;
             buttonExit.Text = "Exit";
             buttonExit.UseVisualStyleBackColor = true;
@@ -71,7 +74,7 @@
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(547, 597);
+            ClientSize = new Size(291, 105);
             Controls.Add(buttonExit);
             Controls.Add(buttonPlay);
             Controls.Add(buttonRule);

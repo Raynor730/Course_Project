@@ -31,7 +31,7 @@ namespace Game
 
         private void buttonRule_Click(object sender, EventArgs e)
         {
-            rule.Show();
+           rule.Show();  
         }
     }
 }

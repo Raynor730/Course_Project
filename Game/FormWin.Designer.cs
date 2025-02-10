@@ -66,8 +66,9 @@
             Controls.Add(buttonFill);
             Controls.Add(textBoxTop);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "FormWin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormWin";
             ResumeLayout(false);
             PerformLayout();

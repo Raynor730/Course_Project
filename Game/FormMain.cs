@@ -1,5 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using Game;
 
 namespace Game
 {
@@ -10,6 +14,7 @@ namespace Game
         private HashSet<char> matchedLettersSet = new HashSet<char>();
         private HashSet<char> noMatchedLettersSet = new HashSet<char>();
         FormDefeat formDefeat = new FormDefeat();
+        private string secretWord;
 
         public FormMain()
         {
@@ -25,47 +30,31 @@ namespace Game
         {
             picture.Image = Image.FromFile("Image\\0.png");
 
+            List<string> words = LoadWordsFromXml("words.xml"); // Загрузка слов из XML
             Random rnd = new Random();
-            string[] words =
-            {
-               "Пицца",
-               "Сода",
-               "Баба",
-               "Бабушка",
-               "Дедушка",
-               "Мама",
-               "Папа",
-               "Вагон",
-               "Габарит",
-               "Жабо",
-               "Лягушка",
-               "Тигр",
-               "Лев",
-               "Зубр",
-               "Бизон",
-               "Газель",
-               "Зебра",
-               "Жираф",
-               "Игуала",
-               "Уж",
-               "Питон",
-               "Кобра",
-               "Манитор",
-               "Блок",
-               "Шлакоблок",
-               "Бетон",
-               "Шлакбаум",
-               "Вагонетка",
-               "Горшок",
-               "Цветок",
-               "Банка",
-               "Банан"
-            };
-            string secretWord = words[rnd.Next(words.Length)]; // выбираем слово, которое будем угадывать
+            secretWord = words[rnd.Next(words.Count)]; // выбираем слово, которое будем угадывать
 
             SecretWord.Text = secretWord;
         }
+        private List<string> LoadWordsFromXml(string filePath)
+        {
+            var wordsList = new List<string>();
 
+            try
+            {
+                XElement xml = XElement.Load(filePath);
+                foreach (var word in xml.Elements("word"))
+                {
+                    wordsList.Add(word.Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при чтении XML файла: " + ex.Message);
+            }
+
+            return wordsList;
+        }
         public void Check(string word)
         {
             char[] secretWordChar = SecretWord.Text.ToLower().Trim().ToCharArray();
@@ -119,6 +108,10 @@ namespace Game
                         if (lenght == secretWordChar.Length)
                         {
                             FormWin formWin = new FormWin();
+                            FormMain formMain = new FormMain();
+                            formMain.Hide();
+                            Refresh();
+                            Thread.Sleep(500);
                             formWin.Show();
                         }
                     }
