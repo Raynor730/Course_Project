@@ -37,6 +37,7 @@
             labelOutNoMatchingLetters = new Label();
             label2 = new Label();
             panel1 = new Panel();
+            CountingErrors = new TextBox();
             InputWord = new TextBox();
             buttonCheck = new Button();
             SecretWord = new TextBox();
@@ -140,6 +141,7 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(CountingErrors);
             panel1.Controls.Add(InputWord);
             panel1.Controls.Add(buttonCheck);
             panel1.Controls.Add(SecretWord);
@@ -150,6 +152,13 @@
             panel1.Padding = new Padding(20);
             panel1.Size = new Size(384, 196);
             panel1.TabIndex = 2;
+            // 
+            // CountingErrors
+            // 
+            CountingErrors.Location = new Point(20, 98);
+            CountingErrors.Name = "CountingErrors";
+            CountingErrors.Size = new Size(193, 29);
+            CountingErrors.TabIndex = 3;
             // 
             // InputWord
             // 
@@ -226,5 +235,6 @@
         private Button buttonCheck;
         private Label labelOutMatchingLetters;
         private Label labelOutNoMatchingLetters;
+        private TextBox CountingErrors;
     }
 }

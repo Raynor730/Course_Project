@@ -26,11 +26,13 @@ namespace Game
 
         private void buttonPlay_Click(object sender, EventArgs e)
         {
+            this.Hide();
             formMain.Show();
         }
 
         private void buttonRule_Click(object sender, EventArgs e)
         {
+          
            rule.Show();  
         }
     }

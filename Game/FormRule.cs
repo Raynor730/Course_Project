@@ -12,14 +12,14 @@ namespace Game
 {
     public partial class FormRule : Form
     {
-
+        
         public FormRule()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {    
             this.Hide();
         }
     }

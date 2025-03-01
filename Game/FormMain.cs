@@ -13,6 +13,7 @@ namespace Game
         private bool errorInAttempt = false;
         private HashSet<char> matchedLettersSet = new HashSet<char>();
         private HashSet<char> noMatchedLettersSet = new HashSet<char>();
+
         FormDefeat formDefeat = new FormDefeat();
         private string secretWord;
 
@@ -36,6 +37,7 @@ namespace Game
 
             SecretWord.Text = secretWord;
         }
+        // проверка на подключении файла Words
         private List<string> LoadWordsFromXml(string filePath)
         {
             var wordsList = new List<string>();
@@ -91,6 +93,7 @@ namespace Game
             if(errorInAttempt)
             {
                 error++;
+                CountingErrors.Text = "Ошибки: "+ error +"/11";
                 imgUpdate(error);
                 errorInAttempt = false;
             }
@@ -117,8 +120,6 @@ namespace Game
                     }
                 }
             }
-
-
             // Обновление меток с использованием методов OutMatchingLetters и OutNoMatchingLetters
             OutMatchingLetters(matchedLettersSet);
             OutNoMatchingLetters(noMatchedLettersSet);
@@ -166,9 +167,9 @@ namespace Game
             {
                 picture.Image = Image.FromFile("image\\11.png");
                 Refresh();
+                this.Close();
                 Thread.Sleep(500);
                 formDefeat.Show();
-                
             }
             else
             {
