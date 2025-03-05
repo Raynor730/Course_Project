@@ -69,7 +69,6 @@
             Margin = new Padding(4);
             Name = "FormWin";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormWin";
             ResumeLayout(false);
             PerformLayout();
         }

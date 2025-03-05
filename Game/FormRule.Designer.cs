@@ -131,7 +131,7 @@
             Name = "FormRule";
             Padding = new Padding(10);
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormRule";
+            Text = "Правила";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -35,10 +35,11 @@
             // TopTextBoxDefeat
             // 
             TopTextBoxDefeat.Dock = DockStyle.Top;
+            TopTextBoxDefeat.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Point, 204);
             TopTextBoxDefeat.Location = new Point(0, 0);
             TopTextBoxDefeat.Margin = new Padding(4);
             TopTextBoxDefeat.Name = "TopTextBoxDefeat";
-            TopTextBoxDefeat.Size = new Size(191, 29);
+            TopTextBoxDefeat.Size = new Size(275, 71);
             TopTextBoxDefeat.TabIndex = 0;
             TopTextBoxDefeat.Text = "Поражение";
             TopTextBoxDefeat.TextAlign = HorizontalAlignment.Center;
@@ -46,10 +47,11 @@
             // FillButtonDefeat
             // 
             FillButtonDefeat.Dock = DockStyle.Fill;
-            FillButtonDefeat.Location = new Point(0, 29);
+            FillButtonDefeat.Font = new Font("Segoe UI", 26.25F);
+            FillButtonDefeat.Location = new Point(0, 71);
             FillButtonDefeat.Margin = new Padding(2, 3, 2, 3);
             FillButtonDefeat.Name = "FillButtonDefeat";
-            FillButtonDefeat.Size = new Size(191, 59);
+            FillButtonDefeat.Size = new Size(275, 72);
             FillButtonDefeat.TabIndex = 1;
             FillButtonDefeat.Text = "Выход";
             FillButtonDefeat.UseVisualStyleBackColor = true;
@@ -60,7 +62,7 @@
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(191, 88);
+            ClientSize = new Size(275, 143);
             Controls.Add(FillButtonDefeat);
             Controls.Add(TopTextBoxDefeat);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
