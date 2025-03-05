@@ -36,11 +36,11 @@
             // 
             TopTextBoxDefeat.Dock = DockStyle.Top;
             TopTextBoxDefeat.Location = new Point(0, 0);
-            TopTextBoxDefeat.Margin = new Padding(4, 4, 4, 4);
+            TopTextBoxDefeat.Margin = new Padding(4);
             TopTextBoxDefeat.Name = "TopTextBoxDefeat";
-            TopTextBoxDefeat.Size = new Size(334, 29);
+            TopTextBoxDefeat.Size = new Size(191, 29);
             TopTextBoxDefeat.TabIndex = 0;
-            TopTextBoxDefeat.Text = "Ты проиграл, тринеруйся зелень!";
+            TopTextBoxDefeat.Text = "Поражение";
             TopTextBoxDefeat.TextAlign = HorizontalAlignment.Center;
             // 
             // FillButtonDefeat
@@ -49,9 +49,9 @@
             FillButtonDefeat.Location = new Point(0, 29);
             FillButtonDefeat.Margin = new Padding(2, 3, 2, 3);
             FillButtonDefeat.Name = "FillButtonDefeat";
-            FillButtonDefeat.Size = new Size(334, 59);
+            FillButtonDefeat.Size = new Size(191, 59);
             FillButtonDefeat.TabIndex = 1;
-            FillButtonDefeat.Text = "СЭР, ДА СЭР!";
+            FillButtonDefeat.Text = "Выход";
             FillButtonDefeat.UseVisualStyleBackColor = true;
             FillButtonDefeat.Click += FillButtonDefeat_Click;
             // 
@@ -60,14 +60,13 @@
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(334, 88);
+            ClientSize = new Size(191, 88);
             Controls.Add(FillButtonDefeat);
             Controls.Add(TopTextBoxDefeat);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "FormDefeat";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormDefeat";
             ResumeLayout(false);
             PerformLayout();
         }

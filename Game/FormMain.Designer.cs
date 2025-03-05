@@ -209,7 +209,7 @@
             Margin = new Padding(4);
             Name = "FormMain";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Виселица";
             Load += FormMain_Load;
             panelPicture.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picture).EndInit();

@@ -21,7 +21,9 @@ namespace Game
 
         private void buttonFill_Click(object sender, EventArgs e)
         {
+            this.Hide();
             formMain.Hide();
+            Refresh();
             formMenu.Show();
         }
     }

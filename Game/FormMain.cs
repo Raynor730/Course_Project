@@ -29,6 +29,7 @@ namespace Game
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            CountingErrors.Text = "Ошибки: 0/11";
             picture.Image = Image.FromFile("Image\\0.png");
 
             List<string> words = LoadWordsFromXml("words.xml"); // Загрузка слов из XML
@@ -36,6 +37,8 @@ namespace Game
             secretWord = words[rnd.Next(words.Count)]; // выбираем слово, которое будем угадывать
 
             SecretWord.Text = secretWord;
+            //string maskedWord = secretWord[0] + new string('_', secretWord.Length - 2)+ secretWord[secretWord.Length - 1];
+            //SecretWord.Text = maskedWord;
         }
         // проверка на подключении файла Words
         private List<string> LoadWordsFromXml(string filePath)
