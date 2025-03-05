@@ -16,6 +16,7 @@ namespace Game
 
         FormDefeat formDefeat = new FormDefeat();
         private string secretWord;
+        public string secretWordAdmin;
 
         public FormMain()
         {
@@ -29,16 +30,17 @@ namespace Game
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            
             CountingErrors.Text = "Ошибки: 0/11";
             picture.Image = Image.FromFile("Image\\0.png");
 
             List<string> words = LoadWordsFromXml("words.xml"); // Загрузка слов из XML
             Random rnd = new Random();
             secretWord = words[rnd.Next(words.Count)]; // выбираем слово, которое будем угадывать
+            secretWordAdmin = secretWord;
 
-            SecretWord.Text = secretWord;
-            //string maskedWord = secretWord[0] + new string('_', secretWord.Length - 2)+ secretWord[secretWord.Length - 1];
-            //SecretWord.Text = maskedWord;
+           string maskedWord = secretWord[0] + new string('_', secretWord.Length - 2) + secretWord[secretWord.Length - 1];
+            SecretWord.Text = maskedWord;
         }
         // проверка на подключении файла Words
         private List<string> LoadWordsFromXml(string filePath)
@@ -62,7 +64,8 @@ namespace Game
         }
         public void Check(string word)
         {
-            char[] secretWordChar = SecretWord.Text.ToLower().Trim().ToCharArray();
+            
+            char[] secretWordChar = secretWordAdmin.ToLower().Trim().ToCharArray();
             char[] inputWordChar = word.ToLower().Trim().ToCharArray();
 
             // Внешний цикл проходит по каждому символу inputWordChar
